@@ -15,7 +15,7 @@ if not version:
 
 setup(
     name='wechat_oauth2',
-    version='0.0.1',
+    version=version,
     description='wechat sdk',
     long_description=readme,
     author='codeif',

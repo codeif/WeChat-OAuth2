@@ -1,5 +1,5 @@
 __title__ = 'WeChat-OAuth2'
-__version__ = '0.0.1'
+__version__ = '0.1.0'
 __author__ = 'codeif'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2016 codeif'
