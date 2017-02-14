@@ -21,7 +21,7 @@ setup(
     author='codeif',
     author_email='me@codeif.com',
     url='https://github.com/codeif/WeChat-OAuth2',
-    license='BSD',
+    license='MIT',
     install_requires=['rauth', 'requests'],
     packages=find_packages(),
 )
