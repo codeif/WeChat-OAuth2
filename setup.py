@@ -14,7 +14,7 @@ if not version:
     raise RuntimeError('Cannot find version information')
 
 setup(
-    name='wechat_oauth2',
+    name='WeChat-OAuth2',
     version=version,
     description='wechat sdk',
     long_description=readme,
