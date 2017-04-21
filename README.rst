@@ -24,8 +24,8 @@ Example Usage
 .. code-block:: python
 
   from wechat_oauth2 import WeChatService
-  wechat = WeChatService(app_id,
-                         app_secret)
+  wechat = WeChatService(appid,
+                         secret)
 
 - 获取authorize_url
     

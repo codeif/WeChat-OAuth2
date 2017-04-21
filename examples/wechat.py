@@ -17,16 +17,16 @@ from wechat_oauth2 import WeChatService
 # Flask config
 SECRET_KEY = '\xfb\x12\xdf\xa1@i\xd6>V\xc0\xbb\x8fp\x16#Z\x0b\x81\xeb\x16'
 DEBUG = True
-WX_APP_ID = 'your app_id'
-WX_APP_SECRET = 'your app_secret'
+WX_APPID = 'your appid'
+WX_SECRET = 'your app secret'
 
 # Flask setup
 app = Flask(__name__)
 app.config.from_object(__name__)
 
 # WeChat OAuth 2.0 service wrapper
-wechat = WeChatService(app.config['WX_APP_ID'],
-                       app.config['WX_APP_SECRET'])
+wechat = WeChatService(app.config['WX_APPID'],
+                       app.config['WX_SECRET'])
 
 
 # views

@@ -15,8 +15,8 @@ class WeChatService(Service):
 
     You might intialize :class:`WeChatService` something like this::
 
-        service = WeChatService(app_id='123',
-                                app_secret='456')
+        service = WeChatService(appid='123',
+                                secret='456')
 
     A signed authorize URL is then produced via calling
     `service.get_authorize_url`. Once this has been visited by the client and
@@ -30,8 +30,8 @@ class WeChatService(Service):
         # now we can make regular Requests' calls
         r = session.get('userinfo')
 
-    :param app_id: 微信应用ID
-    :param app_secret: 应用密钥
+    :param appid: 微信应用ID
+    :param secret: 应用密钥
     :param name: The service name, defaults to `wechat`.
     :param authorize_url: Authorize endpoint, defaults to ``.
     :param base_url: A base URL from which to construct requests, defaults to
@@ -40,15 +40,15 @@ class WeChatService(Service):
         `wechat_oauth2.WeChatSession`
     :type session_obj: :class:`rauth.Session`
     '''
-    __attrs__ = Service.__attrs__ + ['app_id',
-                                     'app_secret',
+    __attrs__ = Service.__attrs__ + ['appid',
+                                     'secret',
                                      'access_token_url',
                                      'session_obj']
 
     def __init__(
         self,
-        app_id,
-        app_secret,
+        appid,
+        secret,
         name='wechat',
         access_token_url='https://api.weixin.qq.com/sns/oauth2/access_token',
         authorize_url='https://open.weixin.qq.com/connect/oauth2/authorize',
@@ -57,8 +57,8 @@ class WeChatService(Service):
     ):
 
         #: Client credentials.
-        self.app_id = app_id
-        self.app_secret = app_secret
+        self.appid = appid
+        self.secret = secret
 
         #: The provider's access token URL.
         self.access_token_url = access_token_url
@@ -83,14 +83,14 @@ class WeChatService(Service):
         :param openid: openid with which to initilize the session.
         '''
         if access_token and openid:
-            session = self.session_obj(self.app_id,
-                                       self.app_secret,
+            session = self.session_obj(self.appid,
+                                       self.secret,
                                        access_token,
                                        openid,
                                        service=self)
         else:  # pragma: no cover
-            session = self.session_obj(self.app_id,
-                                       self.app_secret,
+            session = self.session_obj(self.appid,
+                                       self.secret,
                                        service=self)
         return session
 
@@ -98,7 +98,7 @@ class WeChatService(Service):
                           **params):
         '''Returns a formatted authorize URL.'''
         assert redirect_uri
-        params.update({'appid': self.app_id,
+        params.update({'appid': self.appid,
                        'response_type': 'code',
                        'scope': scope,
                        'redirect_uri': redirect_uri})
@@ -118,8 +118,8 @@ class WeChatService(Service):
 
     def get_raw_access_token(self, code, method='GET', **kwargs):
         params = {
-            'appid': self.app_id,
-            'secret': self.app_secret,
+            'appid': self.appid,
+            'secret': self.secret,
             'code': code,
             'grant_type': 'authorization_code',
         }
@@ -174,23 +174,23 @@ class WeChatService(Service):
 
 
 class WeChatSession(RauthSession):
-    __attrs__ = RauthSession.__attrs__ + ['app_id',
-                                          'app_secret',
+    __attrs__ = RauthSession.__attrs__ + ['appid',
+                                          'secret',
                                           'access_token',
                                           'openid',
                                           'refresh_token']
 
     def __init__(self,
-                 app_id=None,
-                 app_secret=None,
+                 appid=None,
+                 secret=None,
                  access_token=None,
                  openid=None,
                  service=None,
                  access_token_key=None):
 
         #: Client credentials.
-        self.app_id = app_id
-        self.app_secret = app_secret
+        self.appid = appid
+        self.secret = secret
 
         #: Access token.
         self.access_token = access_token

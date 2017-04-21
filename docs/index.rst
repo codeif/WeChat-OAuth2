@@ -32,8 +32,8 @@ simply import the service container object:
     from wechat_oauth2 import WeChatService
 
     wechat = WeChatService(
-        app_id='app id',
-        app_secret='app secret')
+        appid='app id',
+        secret='app secret')
 
 Using the service wrapper API we can obtain an access token after the
 authorization URL has been visited by the client. First generate the
